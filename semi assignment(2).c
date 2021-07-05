@@ -5,7 +5,7 @@ int main()
     int num;
     int i, j, k, l;
 
-    printf("ÁÙ(line) ¼ö : ");
+    printf("ì¤„(line) ìˆ˜ : ");
     scanf("%d", &num);
 
     for (i = 0; i < num; i++)
