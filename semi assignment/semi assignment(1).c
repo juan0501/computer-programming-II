@@ -5,9 +5,9 @@ int main()
 	int code, electricity;
 	double charge;
 
-	printf("ÄÚµå¹øÈ£(1. °¡Á¤¿ë, 2. »ê¾÷¿ë, 3. ±³À°¿ë): ");
+	printf("ì½”ë“œë²ˆí˜¸(1. ê°€ì •ìš©, 2. ì‚°ì—…ìš©, 3. êµìœ¡ìš©): ");
 	scanf("%d", &code);
-	printf("Àü±â»ç¿ë·®(kw): ");
+	printf("ì „ê¸°ì‚¬ìš©ëŸ‰(kw): ");
 	scanf("%d", &electricity);
 
 	switch (code)
@@ -28,7 +28,7 @@ int main()
 		break;
 	}
 
-	printf("Àü±â¿ä±İ : %.0lf¿ø", charge);
+	printf("ì „ê¸°ìš”ê¸ˆ : %.0lfì›", charge);
 
 	return 0;
 }
