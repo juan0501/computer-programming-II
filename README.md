@@ -4,4 +4,4 @@ Summer vacation study
 
 *member
 Tutor: JuannKim, 
-Tutee: 
+Tutee: uijinHong, nayeonSon, kyoungminMok
