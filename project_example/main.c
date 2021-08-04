@@ -2,22 +2,22 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct Subject // ÇĞ»ıº° ¼ö°­ °ú¸ñ
+typedef struct Subject // í•™ìƒë³„ ìˆ˜ê°• ê³¼ëª©
 {
-    char name[20]; // Á¦¸ñ
-    char num[20];  // ÇĞ¹ø
-    int credits;   // ÇĞÁ¡
-    char score;    // Á¡¼ö( A, B, ... )
+    char name[20]; // ì œëª©
+    char num[20];  // í•™ë²ˆ
+    int credits;   // í•™ì 
+    char score;    // ì ìˆ˜( A, B, ... )
     struct Subject* next;
 } Subject;
 
 typedef struct User
 {
-    int value; // 0 : ±³¼ö´Ô, 1 : ÇĞ»ı
+    int value; // 0 : êµìˆ˜ë‹˜, 1 : í•™ìƒ
     char ID[20];
     char PW[20]; 
     char name[20];
-    char num[20];  // ÇĞ¹ø
+    char num[20];  // í•™ë²ˆ
     int age;
     struct User* next;
 } User;
@@ -54,7 +54,7 @@ int main()
 void window_1()
 {
     int n;
-    printf("\n·Î±×ÀÎ(1) È¸¿ø°¡ÀÔ(2) : ");
+    printf("\në¡œê·¸ì¸(1) íšŒì›ê°€ì…(2) : ");
     scanf("%d", &n);
 
     excution(n);
@@ -71,7 +71,7 @@ void excution(int n)
         sign_in();
         break;
     default:
-        printf("\n[Àß¸ø ´­·¶½À´Ï´Ù.]\n");
+        printf("\n[ì˜ëª» ëˆŒë €ìŠµë‹ˆë‹¤.]\n");
         break;
     }
 }
@@ -103,7 +103,7 @@ void user_information(User* user)
 
     while (1)
     {
-        printf("ID ÀÔ·Â: ");
+        printf("ID ì…ë ¥: ");
         scanf(" %s", ID);
 
         if (compare_duplication(ID) == 0 || IDPW_length(ID) == 0 || engdig(ID) == 0)
@@ -116,21 +116,21 @@ void user_information(User* user)
     strcpy(user->ID, ID);
     pw_cmp(user->PW);
 
-    printf("ÀÌ¸§: ");
+    printf("ì´ë¦„: ");
     scanf(" %s", user->name);
 
-    printf("³ªÀÌ: ");
+    printf("ë‚˜ì´: ");
     scanf("%d", &user->age);
 
     do
     {
-        printf("(0)±³¼ö´Ô , (1)ÇĞ»ı : ");
+        printf("(0)êµìˆ˜ë‹˜ , (1)í•™ìƒ : ");
         scanf("%d", &user->value);
-    } while (user->value != 0 && user->value != 1); //´Ù¸¥ ¹øÈ£¸¦ ÀÔ·ÂÇÏ´Â °æ¿ì
+    } while (user->value != 0 && user->value != 1); //ë‹¤ë¥¸ ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ëŠ” ê²½ìš°
 
     if (user->value == 1)
     {
-        printf("ÇĞ¹ø ÀÔ·Â: ");
+        printf("í•™ë²ˆ ì…ë ¥: ");
         scanf("%d", user->num);
     }
 
@@ -139,29 +139,29 @@ void user_information(User* user)
 
 int compare_duplication(char* ID)
 {
-    if (user_head == NULL || user_head == user_tail) //node°¡ ¾ø´Â °æ¿ì
+    if (user_head == NULL || user_head == user_tail) //nodeê°€ ì—†ëŠ” ê²½ìš°
         return 1;
     else
     {
         for (User* p = user_head; p != user_tail; p = p->next)
             if (strcmp(p->ID, ID) == 0)
             {
-                printf("\n[Áßº¹µÇ¾ú½À´Ï´Ù.]\n");
+                printf("\n[ì¤‘ë³µë˜ì—ˆìŠµë‹ˆë‹¤.]\n");
                 return 0;
             }
     }
     return 1;
 }
 
-//ID,PW ±æÀÌÁ¦ÇÑ
+//ID,PW ê¸¸ì´ì œí•œ
 int IDPW_length(char* user)
 {
     int length = strlen(user);
     int cnt = 0;
 
-    if (length > 10)  // ¾ÆÀÌµğ°¡ 10±ÛÀÚ ÀÌ»óÀÎ °æ¿ì
+    if (length > 10)  // ì•„ì´ë””ê°€ 10ê¸€ì ì´ìƒì¸ ê²½ìš°
     {
-        printf("\n[10±ÛÀÚ ÀÌÇÏ·Î ´Ù½ÃÀÔ·ÂÇÏ¼¼¿ä.]\n");
+        printf("\n[10ê¸€ì ì´í•˜ë¡œ ë‹¤ì‹œì…ë ¥í•˜ì„¸ìš”.]\n");
 
         return 0;
     }
@@ -185,7 +185,7 @@ int engdig(char* user)
     if (cnt == length)
         return 1;
 
-    printf("\n[ID/PW´Â ¿µ¹®ÀÚ¿Í ¼ıÀÚ·Î¸¸ ÀÌ·ç¾îÁ®¾ß ÇÕ´Ï´Ù.]\n");
+    printf("\n[ID/PWëŠ” ì˜ë¬¸ìì™€ ìˆ«ìë¡œë§Œ ì´ë£¨ì–´ì ¸ì•¼ í•©ë‹ˆë‹¤.]\n");
     return 0;
 }
 
@@ -195,7 +195,7 @@ void pw_cmp(char PW[])
 
     while (1)
     {
-        printf("PW ÀÔ·Â: ");
+        printf("PW ì…ë ¥: ");
         scanf(" %s", user_tail->PW);
 
         if (compare_duplication(user_tail->PW) == 0 || IDPW_length(user_tail->PW) == 0 || engdig(user_tail->PW) == 0)
@@ -207,12 +207,12 @@ void pw_cmp(char PW[])
 
     while (1)
     {
-        printf("ÆĞ½º¿öµå È®ÀÎ: ");
+        printf("íŒ¨ìŠ¤ì›Œë“œ í™•ì¸: ");
         scanf(" %s", cmpPW);
         if (strcmp(PW, cmpPW) == 0)
             break;
         else
-            printf("PW°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.\n");
+            printf("PWê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n");
     }
 }
 
@@ -234,22 +234,22 @@ void log_in()
 
         if (strcmp(PW, p->PW) == 0)
         {
-            printf("\n[·Î±×ÀÎ µÇ¾ú½À´Ï´Ù.]\n");
-            if (p->value == 0) //±³¼ö´ÔÀÎ °æ¿ì
+            printf("\n[ë¡œê·¸ì¸ ë˜ì—ˆìŠµë‹ˆë‹¤.]\n");
+            if (p->value == 0) //êµìˆ˜ë‹˜ì¸ ê²½ìš°
                 window_professor(p);
-            else //ÇĞ»ıÀÎ °æ¿ì
+            else //í•™ìƒì¸ ê²½ìš°
                 window_student(p);
         }
         else
         {
-            printf("\n[ºñ¹Ğ¹øÈ£°¡ Æ²·È½À´Ï´Ù.]\n");
-            window_1(); //ÃÊ±âÈ­¸éÀ¸·Î ÀÌµ¿
+            printf("\n[ë¹„ë°€ë²ˆí˜¸ê°€ í‹€ë ¸ìŠµë‹ˆë‹¤.]\n");
+            window_1(); //ì´ˆê¸°í™”ë©´ìœ¼ë¡œ ì´ë™
         }
     }
     else
     {
-        printf("\n[¾ÆÀÌµğ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.]\n");
-        window_1(); //ÃÊ±âÈ­¸éÀ¸·Î ÀÌµ¿
+        printf("\n[ì•„ì´ë””ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.]\n");
+        window_1(); //ì´ˆê¸°í™”ë©´ìœ¼ë¡œ ì´ë™
     }
 }
 
@@ -284,16 +284,16 @@ void subject_information(Subject* subject)
 {
     printf("\n=======================\n");
 
-    printf("°ú¸ñ ÀÌ¸§ : ");
+    printf("ê³¼ëª© ì´ë¦„ : ");
     scanf(" %[^\n]", subject->name);
 
-    printf("°ú¸ñÀÇ ÇĞÁ¡ :");
+    printf("ê³¼ëª©ì˜ í•™ì  :");
     scanf("%d", &subject->credits);
 
-    printf("¼ºÀûÀ» µî·ÏÇÒ ÇĞ»ıÀÇ ÇĞ¹ø: ");
+    printf("ì„±ì ì„ ë“±ë¡í•  í•™ìƒì˜ í•™ë²ˆ: ");
     scanf(" %s", subject->num);
     
-    printf("¼ºÀû ÀÔ·Â(A~Z): ");
+    printf("ì„±ì  ì…ë ¥(A~Z): ");
     scanf(" %c", &subject->score);
 
     printf("\n=======================\n");
@@ -305,10 +305,10 @@ void print_score()
     {
         printf("\n=======================\n");
 
-        printf("\n°ú¸ñ¸í: %s\n", p->name);
-        printf("\nÇĞÁ¡: %d\n", p->credits);
-        printf("\nÇĞ¹ø: %s\n", p->num);
-        printf("\nÁ¡¼ö: %c\n", p->score);
+        printf("\nê³¼ëª©ëª…: %s\n", p->name);
+        printf("\ní•™ì : %d\n", p->credits);
+        printf("\ní•™ë²ˆ: %s\n", p->num);
+        printf("\nì ìˆ˜: %c\n", p->score);
         printf("\n=======================\n");
     }
 }
@@ -321,10 +321,10 @@ void print_my_score(User* user)
         {
             printf("\n=======================\n");
 
-            printf("\n°ú¸ñ¸í: %s\n", p->name);
-            printf("\nÇĞÁ¡: %d\n", p->credits);
-            printf("\nÇĞ¹ø: %s\n", p->num);
-            printf("\nÁ¡¼ö: %c\n", p->score);
+            printf("\nê³¼ëª©ëª…: %s\n", p->name);
+            printf("\ní•™ì : %d\n", p->credits);
+            printf("\ní•™ë²ˆ: %s\n", p->num);
+            printf("\nì ìˆ˜: %c\n", p->score);
             printf("\n=======================\n");
         }
     }
@@ -333,7 +333,7 @@ void print_my_score(User* user)
 void window_professor(User* user)
 {
     int menu;
-    printf("(1)ÇĞ»ı ¼ºÀû µî·Ï (2)ÇĞ»ı ¼ºÀû Á¤º¸ Ãâ·Â, (2)·Î±×¾Æ¿ô");
+    printf("(1)í•™ìƒ ì„±ì  ë“±ë¡ (2)í•™ìƒ ì„±ì  ì •ë³´ ì¶œë ¥, (2)ë¡œê·¸ì•„ì›ƒ");
     printf("\n=> ");
     scanf("%d", &menu);
 
@@ -346,11 +346,11 @@ void window_professor(User* user)
         print_score();
         break;
     case 3:
-        printf("\n[·Î±×¾Æ¿ô µÇ¼Ì½À´Ï´Ù.]\n");
+        printf("\n[ë¡œê·¸ì•„ì›ƒ ë˜ì…¨ìŠµë‹ˆë‹¤.]\n");
         system("cls");
         return;
     default:
-        printf("\n[Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.]\n");
+        printf("\n[ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.]\n");
         break;
     }
     window_professor(user);
@@ -360,7 +360,7 @@ void window_professor(User* user)
 void window_student(User* user)
 {
     int menu;
-    printf("(1)¼ºÀû Á¤º¸ Ãâ·Â, (2)·Î±×¾Æ¿ô");
+    printf("(1)ì„±ì  ì •ë³´ ì¶œë ¥, (2)ë¡œê·¸ì•„ì›ƒ");
     printf("\n=> ");
     scanf("%d", &menu);
 
@@ -370,11 +370,11 @@ void window_student(User* user)
         print_my_score(user);
         break;
     case 2:
-        printf("\n[·Î±×¾Æ¿ô µÇ¼Ì½À´Ï´Ù.]\n");
+        printf("\n[ë¡œê·¸ì•„ì›ƒ ë˜ì…¨ìŠµë‹ˆë‹¤.]\n");
         system("cls");
         return;
     default:
-        printf("\n[Àß¸øÀÔ·ÂÇÏ¼Ì½À´Ï´Ù.]\n");
+        printf("\n[ì˜ëª»ì…ë ¥í•˜ì…¨ìŠµë‹ˆë‹¤.]\n");
         break;
     }
     window_student(user);
