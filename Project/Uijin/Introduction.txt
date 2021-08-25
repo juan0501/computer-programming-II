@@ -1,1 +1,1 @@
-This repository is made for linked list project.
+이 프로잭트는 연결노드를 포함하여 여태까지 배워온 코드들을 이용해 만든 게시판 프로그램이다.
